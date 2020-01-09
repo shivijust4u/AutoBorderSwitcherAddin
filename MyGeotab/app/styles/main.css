@@ -1,3 +1,103 @@
 .hidden {
     display: none;
 }
+.fieldset1 {
+    float: left;
+    margin-right: 20px;
+    width:250px;
+}
+
+.fieldset2 {
+    float: left;
+    width:250px;
+}
+.driversFieldset {
+    border-color:#56a1d5 !important;
+    color:#25477b;
+}
+
+#allDriversList{
+    min-height: 10vh;
+    max-height: 60vh;
+    height: fit-content;
+    overflow-y:auto;
+}
+
+#selectedDriversList{
+    min-height: 5vh;
+    max-height: 40vh;
+    height: fit-content;
+    overflow-y:auto;
+}
+
+.driverSearch{
+    margin-left: 0.4em;
+    padding-bottom: 3px;
+}
+
+#driverSearchId{
+    width:15vw;
+}
+.driverListTable{
+    width: -webkit-fill-available;
+    border-collapse: separate; 
+    border-spacing: 5px;
+  
+}
+.driverNameRow{
+    /* background-color: #56a1d5; */
+}
+
+.driverNameRow:hover{
+    background-color: #D4ECFC;
+    cursor: pointer;
+}
+.driverNameRow td{
+    padding: 5px; 
+    border-radius: 5px;
+}
+
+.legendClass{
+    font-weight: 700;
+    color: #25477b;
+    fill: #25477b;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+button{
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 5px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width:60%;
+}
+#resetButton{
+    border: 2px solid #008CBA;
+}
+#resetButton:hover {
+    background-color: #56a1d5;
+    color: white;
+}
+button:focus {
+    outline: none;
+}
+#submitButton{
+    border: 2px solid #349137;
+}
+#submitButton:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#submitButton:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
