@@ -1,0 +1,20 @@
+{
+  "name": "AutoBorderSwitcher",
+  "supportEmail": "",
+  "version": "0.0.1",
+  "items": [{
+    "url": "autoBorderSwitcher.html",
+    "path": "DriveAppLink/",
+    "menuName": {
+      "en": "AutoBorderSwitcher"
+    },
+    "icon": "images/icon.svg"
+  }],
+  "dev": {
+    "root": "autoBorderSwitcher",
+    "dist": {
+      "host": "https://www.example.com/myaddin/"
+    }
+  },
+  "onStartup": true
+}
