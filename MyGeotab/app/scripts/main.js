@@ -42,9 +42,9 @@ geotab.addin.testaddin = function () {
       });
 
       // getting the current user to display in the UI
-      freshApi.getSession(session => {
-        elAddin.querySelector('#testaddin-user').textContent = session.userName;
-      });
+      // freshApi.getSession(session => {
+      //   elAddin.querySelector('#testaddin-user').textContent = session.userName;
+      // });
 
       // show main content
       elAddin.className = '';
