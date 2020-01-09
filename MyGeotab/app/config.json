@@ -1,0 +1,19 @@
+{
+  "name": "testaddin",
+  "supportEmail": "",
+  "version": "0.0.1",
+  "items": [{
+    "url": "testaddin.html",
+    "path": "",
+    "menuName": {
+      "en": "testaddin"
+    },
+    "icon": "images/icon.svg"
+  }],
+  "dev": {
+    "root": "testaddin",
+    "dist": {
+      "host": "https://www.example.com/myaddin/"
+    }
+  }
+}
