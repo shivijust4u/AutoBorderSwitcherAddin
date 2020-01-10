@@ -331,7 +331,7 @@ geotab.addin.drivetestaddin = function () {
         username = session.userName;
       });
       offlineCheck(freshState);
-      populateRulesetInfo();
+      // populateRulesetInfo();
       // MUST call initializeCallback when done any setup
       initializeCallback();
     },

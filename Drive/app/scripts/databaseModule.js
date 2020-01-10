@@ -35,7 +35,7 @@ window.autoBorderSwitcher.databaseModule = function(){
                         }
                     },function(result){
                         console.log(result);                    
-                        if(result.length > 0){
+                        if(result){
                             resolve(result[0]);
                         }else{
                             resolve(false);
