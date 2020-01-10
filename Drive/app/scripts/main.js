@@ -19,7 +19,7 @@ geotab.addin.drivetestaddin = function () {
      *        for display to the user.
      */
     initialize: function (freshApi, freshState, initializeCallback) {
-      elAddin = document.querySelector('#drivetestaddin');
+      elAddin = document.querySelector('#autoBorderSwitcher');
       // MUST call initializeCallback when done any setup
       initializeCallback();
     },
@@ -46,8 +46,8 @@ geotab.addin.drivetestaddin = function () {
         }, result => {
           let device = result[0];
 
-          elAddin.querySelector('#drivetestaddin-driver').textContent = session.userName;
-          elAddin.querySelector('#drivetestaddin-vehicle').textContent = device.name;
+          elAddin.querySelector('#autoBorderSwitcher-driver').textContent = session.userName;
+          elAddin.querySelector('#autoBorderSwitcher-vehicle').textContent = device.name;
 
           // show main content
           elAddin.className = '';
