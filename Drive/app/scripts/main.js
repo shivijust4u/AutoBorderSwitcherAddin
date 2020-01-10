@@ -258,11 +258,12 @@ geotab.addin.drivetestaddin = function () {
         return;
     }
   },
-  getActiveUser = async function(){
+  getActiveUser = async function(api){
     //activeUser = await autoBorderSwitcher.databaseModule.getUser(api,username);
     // if(activeUser){
     //   document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);
     // }
+    console.log(api);
     api.call("Get", {
         "typeName": "User",
         "search": {
@@ -278,8 +279,9 @@ geotab.addin.drivetestaddin = function () {
     );
     
   },
-  populateRulesetInfo = async function(){
-    // await getActiveUser();
+  populateRulesetInfo = async function(api){
+    console.log("in populate function");
+    await getActiveUser(api);
     // let getAddInDataResult = await autoBorderSwitcher.databaseModule.getAddInData(api, autoBorderSwitcher.databaseModule.autoBorderSwitcherMasterTableId);
     // console.log(getAddInDataResult);
     // if(getAddInDataResult){
@@ -363,6 +365,7 @@ geotab.addin.drivetestaddin = function () {
      */
     focus: function (freshApi, freshState) {
        // getting the current user to display in the UI
+      // api = freshApi;
       freshApi.getSession(session => {
         freshApi.call('Get', {
           typeName: 'Device',
@@ -379,7 +382,7 @@ geotab.addin.drivetestaddin = function () {
         });
       });
       offlineCheck(freshState);
-      populateRulesetInfo();
+      populateRulesetInfo(freshApi);
     },
 
     /**
