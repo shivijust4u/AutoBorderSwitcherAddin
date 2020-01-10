@@ -1,20 +1,19 @@
 {
-  "name": "AutoBorderSwitcher",
+  "name": "drivetestaddin",
   "supportEmail": "",
   "version": "0.0.1",
   "items": [{
-    "url": "autoBorderSwitcher.html",
+    "url": "drivetestaddin.html",
     "path": "DriveAppLink/",
     "menuName": {
-      "en": "AutoBorderSwitcher"
+      "en": "drivetestaddin"
     },
     "icon": "images/icon.svg"
   }],
   "dev": {
-    "root": "autoBorderSwitcher",
+    "root": "drivetestaddin",
     "dist": {
       "host": "https://www.example.com/myaddin/"
     }
-  },
-  "onStartup": true
+  }
 }

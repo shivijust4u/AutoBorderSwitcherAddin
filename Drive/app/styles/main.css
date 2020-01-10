@@ -1,24 +1,3 @@
 .hidden {
     display: none;
 }
-body .panel{
-    font-family: "Segoe UI",Segoe,"Helvetica Neue",Helvetica,sans-serif;
-    font-size: 0.9em
-}
-#optinDiv{
-    width:auto;
-    background-color:#fffcdd;
-    border: 1.5px solid #ffeb94;
-    color: #926d00;
-    fill: #926d00;
-    border-radius: 4px;
-}
-#enableButton{
-    float: left;
-    width: 49%;
-    margin-right: 2%;
-}
-#disableButton{
-    float: left;
-    width: 49%;
-}
