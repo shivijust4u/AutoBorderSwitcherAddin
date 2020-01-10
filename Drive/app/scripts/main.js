@@ -245,6 +245,16 @@ geotab.addin.drivetestaddin = function () {
     }
   };
 
+  let offlineCheck = function (state) {
+    console.log(state.online);
+    if (!state.online) {
+        switcherButton.disabled = true;
+        document.getElementById('isStatus').innerHTML = 'Status: System is offline, please check back later';
+        return true;
+    }
+    return false;
+
+  };
 
   return {
     /**
@@ -263,6 +273,8 @@ geotab.addin.drivetestaddin = function () {
       freshApi.getSession(session => {
         username = session.userName;
       });
+      offlineCheck(freshState);
+      // populateRulesetInfo();
       // MUST call initializeCallback when done any setup
       initializeCallback();
     },
@@ -294,6 +306,8 @@ geotab.addin.drivetestaddin = function () {
 
           // show main content
           elAddin.className = '';
+          offlineCheck(freshState);
+          // populateRulesetInfo();
         }, err => {
           console.error(err);
         });
