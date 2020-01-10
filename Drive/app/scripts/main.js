@@ -5,7 +5,246 @@ geotab.addin.drivetestaddin = function () {
   'use strict';
 
   // the root container
-  var elAddin;
+  let elAddin, 
+  switcherButton = document.getElementById('rss-switcherButton'),
+  rulesetDataObject, 
+  availableRulesets, 
+  activeUser, 
+  username,
+  api,
+  htmlEscape = function (str) {
+    return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+  },allRulesets = {
+    'None': {
+        name: 'No Ruleset (7-day cycle)'
+    },
+
+    'None8Day': {
+        name: 'No Ruleset (8-day cycle)'
+    },
+
+    'America7Day': {
+        name: 'USA Property 60-hour/7-day'
+    },
+
+    'America7DayBig': {
+        name: 'USA Property 60-hour/7-day (16-hour exemption)'
+    },
+
+    'America8Day': {
+        name: 'USA Property 70-hour/8-day'
+    },
+
+    'America8DayBig': {
+        name: 'USA Property 70-hour/8-day (16-hour exemption)'
+    },
+
+    'AmericaShortHaul': {
+        name: 'USA Property Short-haul 60-hour/7-day'
+    },
+
+    'AmericaShortHaul8Day': {
+        name: 'USA Property Short-haul 70-hour/8-day'
+    },
+
+    'America7DayPassenger': {
+        name: 'USA Passenger 60-hour/7-day'
+    },
+
+    'America8DayPassenger': {
+        name: 'USA Passenger 70-hour/8-day'
+    },
+
+    'AmericaShortHaulPassenger': {
+        name: 'USA Passenger Short-haul 60-hour/7-day'
+    },
+
+    'AmericaShortHaulPassenger8Day': {
+        name: 'USA Passenger Short-haul 70-hour/8-day'
+    },
+
+    'CanadaCycleOne': {
+        name: 'Canada 7-Day Cycle 1'
+    },
+
+    'CanadaCycleTwo': {
+        name: 'Canada 14-Day Cycle 2'
+    },
+
+    'CaliforniaProperty': {
+        name: 'California Property Intrastate'
+    },
+
+    'CaliforniaPassenger': {
+        name: 'California Passenger Intrastate'
+    },
+
+    'OilTransport7Day': {
+        name: 'USA Property 60-hour/7-day 24-hour restart'
+    },
+
+    'OilTransport7DayBig': {
+        name: 'USA Property 60-hour/7-day 24-hour restart (16-hour exemption)'
+    },
+
+    'OilTransport8Day': {
+        name: 'USA Property 70-hour/8-day 24-hour restart'
+    },
+
+    'OilTransport8DayBig': {
+        name: 'USA Property 70-hour/8-day 24-hour restart (16-hour exemption)'
+    },
+
+    'OilTransportShortHaul': {
+        name: 'USA Property Short-haul 60-hour/7-day 24-hour restart'
+    },
+
+    'OilTransportShortHaul8Day': {
+        name: 'USA Property Short-haul 70-hour/8-day 24-hour restart'
+    },
+
+    'AmericaSalesperson': {
+        name: 'Salesperson'
+    },
+
+    'OilWell7Day': {
+        name: 'USA Oil Well 60-hour/7-day'
+    },
+
+    'OilWell7DayBig': {
+        name: 'USA Oil Well 60-hour/7-day (16-hour exemption)'
+    },
+
+    'OilWell8Day': {
+        name: 'USA Oil Well 70-hour/8-day'
+    },
+
+    'OilWell8DayBig': {
+        name: 'USA Oil Well 70-hour/8-day (16-hour exemption)'
+    },
+
+    'AmericaTexas': {
+        name: 'USA Texas 70-hour/7-day'
+    },
+
+    'AmericaTexasShortHaul': {
+        name: 'USA Texas Short-haul 60-hour/7-day'
+    },
+
+    'AmericaTexasShortHaul8Day': {
+        name: 'USA Texas Short-haul 70-hour/8-day'
+    },
+
+    'OilTransportTexas': {
+        name: 'USA Texas Oil Transport 70-hour/7-day'
+    },
+
+    'OilWellTexas': {
+        name: 'USA Texas Oil Well 70-hour/7-day'
+    },
+
+    'Florida7Day': {
+        name: 'Florida Property 70-hour/7-Day Intrastate'
+    },
+
+    'Florida8Day': {
+        name: 'Florida Property 80-hour/8-Day Intrastate'
+    },
+
+    'FloridaShortHaul7Day': {
+        name: 'Florida Property Short-haul 70-hour/7-Day Intrastate'
+    },
+
+    'FloridaShortHaul8Day': {
+        name: 'Florida Property Short-haul 80-hour/8-Day Intrastate'
+    },
+
+    'America7DayNo34h': {
+        name: 'USA Property 60-hour/7-day without 34-hour restart'
+    },
+
+    'America8DayNo34h': {
+        name: 'USA Property 70-hour/8-day without 34-hour restart'
+    },
+
+    'AmericaShortHaulNo34h': {
+        name: 'USA Property Short-haul 60-hour/7-day without 34-hour restart'
+    },
+
+    'AmericaShortHaul8DayNo34h': {
+        name: 'USA Property Short-haul 70-hour/8-day without 34-hour restart'
+    },
+
+    'BrazilShortHaul': {
+        name: 'Brazil Property Short-haul'
+    },
+
+    'CarrierExemption': {
+        name: 'Carrier Exemption'
+    },
+
+    'AmericaNonCdlShortHaul7Day': {
+        name: 'Non-CDL short-haul 60-hour/7-day'
+    },
+
+    'AmericaNonCdlShortHaul8Day': {
+        name: 'Non-CDL short-haul 70-hour/8-day'
+    },
+
+    'AmericaNoRestRequirement7Day': {
+        name: 'USA Property 60-hour/7-day without Rest Requirement'
+    },
+
+    'AmericaNoRestRequirement7DayBig': {
+        name: 'USA Property 60-hour/7-day (16-hour exemption) without Rest Requirement'
+    },
+
+    'AmericaNoRestRequirement8Day': {
+        name: 'USA Property 70-hour/8-day without Rest Requirement'
+    },
+
+    'AmericaNoRestRequirement8DayBig': {
+        name: 'USA Property 70-hour/8-day (16-hour exemption) without Rest Requirement'
+    },
+
+    'OilTransportNoRestRequirement7Day': {
+        name: 'USA Oil Transport 60-hour/7-day without Rest Requirement'
+    },
+
+    'OilTransportNoRestRequirement7DayBig': {
+        name: 'USA Oil Transport 60-hour/7-day (16-hour exemption) without Rest Requirement'
+    },
+
+    'OilTransportNoRestRequirement8Day': {
+        name: 'USA Oil Transport 70-hour/8-day without Rest Requirement'
+    },
+
+    'OilTransportNoRestRequirement8DayBig': {
+        name: 'USA Oil Transport 70-hour/8-day (16-hour exemption) without Rest Requirement'
+    },
+
+    'OilWellNoRestRequirement7Day': {
+        name: 'USA Oil Well 60-hour/7-day without Rest Requirement'
+    },
+
+    'OilWellNoRestRequirement7DayBig': {
+        name: 'USA Oil Well 60-hour/7-day (16-hour exemption) without Rest Requirement'
+    },
+
+    'OilWellNoRestRequirement8Day': {
+        name: 'USA Oil Well 70-hour/8-day without Rest Requirement'
+    },
+
+    'OilWellNoRestRequirement8DayBig': {
+        name: 'USA Oil Well 70-hour/8-day (16-hour exemption) without Rest Requirement'
+    }
+  };
+
 
   return {
     /**
