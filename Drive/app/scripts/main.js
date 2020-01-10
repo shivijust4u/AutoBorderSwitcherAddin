@@ -259,10 +259,24 @@ geotab.addin.drivetestaddin = function () {
     }
   },
   getActiveUser = async function(){
-    activeUser = await autoBorderSwitcher.databaseModule.getUser(api,username);
-    if(activeUser){
-      document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);
-    }
+    //activeUser = await autoBorderSwitcher.databaseModule.getUser(api,username);
+    // if(activeUser){
+    //   document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);
+    // }
+    api.call("Get", {
+        "typeName": "User",
+        "search": {
+          "name": username
+        }
+      },function(result){
+        console.log(result);
+        activeUser = result[0]; 
+        document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);                   
+      },function(error){
+        console.log("Failed to Get User Object for " + username);
+      }
+    );
+    
   },
   populateRulesetInfo = async function(){
     await getActiveUser();
