@@ -249,6 +249,9 @@ geotab.addin.drivetestaddin = function () {
     console.log(state.online);
     if (!state.online) {
         switcherButton.disabled = true;
+        // hide main content
+        document.querySelector('#optinDiv').className = 'hidden';
+        document.querySelector('#switcherDiv').className = 'hidden';
         document.getElementById('isStatus').innerHTML = 'Status: System is offline, please check back later';
         return true;
     }
@@ -303,9 +306,6 @@ geotab.addin.drivetestaddin = function () {
 
           elAddin.querySelector('#autoBorderSwitcher-driver').textContent = session.userName;
           elAddin.querySelector('#autoBorderSwitcher-vehicle').textContent = device.name;
-
-          // show main content
-          elAddin.className = '';
         }, err => {
           console.error(err);
         });

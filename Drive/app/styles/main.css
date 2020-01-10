@@ -1,3 +1,6 @@
+.hidden {
+    display: none;
+}
 body .panel{
     font-family: "Segoe UI",Segoe,"Helvetica Neue",Helvetica,sans-serif;
     font-size: 0.9em
