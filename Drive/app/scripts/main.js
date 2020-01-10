@@ -258,7 +258,7 @@ geotab.addin.drivetestaddin = function () {
         return;
     }
   },
-  getActiveUser = async function(api){
+  getActiveUser = function(api){
     //activeUser = await autoBorderSwitcher.databaseModule.getUser(api,username);
     // if(activeUser){
     //   document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);
@@ -279,9 +279,9 @@ geotab.addin.drivetestaddin = function () {
     );
     
   },
-  populateRulesetInfo = async function(api){
+  populateRulesetInfo = function(api){
     console.log("in populate function");
-    await getActiveUser(api);
+    getActiveUser(api);
     // let getAddInDataResult = await autoBorderSwitcher.databaseModule.getAddInData(api, autoBorderSwitcher.databaseModule.autoBorderSwitcherMasterTableId);
     // console.log(getAddInDataResult);
     // if(getAddInDataResult){
