@@ -1,3 +1,4 @@
+window.autoBorderSwitcher = window.autoBorderSwitcher || {};
 /**
  * @returns {{initialize: Function, focus: Function, blur: Function}}
  */
@@ -245,7 +246,55 @@ geotab.addin.drivetestaddin = function () {
     }
   };
 
-  let offlineCheck = function (state) {
+  let rulesetCheck = function () {
+    if (activeUser.hosRuleSet == availableRulesets[0] || activeUser.hosRuleSet == availableRulesets[1]) {
+        switcherButton.disabled = false;
+        document.getElementById('isStatus').innerHTML = 'Status: Online';
+    }
+    else {
+        switcherButton.disabled = true;
+        document.getElementById('isStatus').innerHTML = 'Status: You do not have a compatible ruleset to use this addin.';
+        console.log('Incompatibile Ruleset');
+        return;
+    }
+  },
+  getActiveUser = async function(){
+    activeUser = await autoBorderSwitcher.databaseModule.getUser(api,username);
+    if(activeUser){
+      document.getElementById('isRuleset').innerHTML = 'Current Ruleset: ' + htmlEscape(allRulesets[activeUser.hosRuleSet].name);
+    }
+  },
+  populateRulesetInfo = async function(){
+    await getActiveUser();
+    // let getAddInDataResult = await autoBorderSwitcher.databaseModule.getAddInData(api, autoBorderSwitcher.databaseModule.autoBorderSwitcherMasterTableId);
+    // console.log(getAddInDataResult);
+    // if(getAddInDataResult){
+    //   rulesetDataObject = JSON.parse(getAddInDataResult.data);
+    //   for(let i=0;i < rulesetDataObject.driverRulesets.length;i++){
+    //     // console.log(Object.keys(rulesetData.driverRulesets[i])[0]);
+    //     if(Object.keys(rulesetDataObject.driverRulesets[i])[0] == activeUser.id){
+    //       console.log("Found Compatible Rulesets for this user!");
+    //       console.log(rulesetDataObject.driverRulesets[i][activeUser.id]);
+  
+    //       availableRulesets = rulesetDataObject.driverRulesets[i][activeUser.id];
+  
+    //       document.getElementById('ruleConfig').innerHTML = 'Compatible Rulesets: ' + htmlEscape(allRulesets[availableRulesets[0]].name) + ', ' + htmlEscape(allRulesets[availableRulesets[1]].name);
+    //     }
+    //   }
+    //   if(!availableRulesets){
+    //     document.getElementById('ruleConfig').innerHTML = 'No compatible rulesets available';
+    //     switcherButton.disabled = true;
+    //   }
+    //   console.log(rulesetDataObject);
+    //   rulesetCheck();
+    // }
+    // else{
+    //   document.getElementById('ruleConfig').innerHTML = 'No compatible rulesets available';
+    //   switcherButton.disabled = true;
+    // }
+    
+  },
+  offlineCheck = function (state) {
     console.log(state.online);
     if (!state.online) {
         switcherButton.disabled = true;
