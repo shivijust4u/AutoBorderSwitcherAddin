@@ -258,7 +258,11 @@ geotab.addin.drivetestaddin = function () {
      *        for display to the user.
      */
     initialize: function (freshApi, freshState, initializeCallback) {
+      api = freshApi;
       elAddin = document.querySelector('#autoBorderSwitcher');
+      freshApi.getSession(session => {
+        username = session.userName;
+      });
       // MUST call initializeCallback when done any setup
       initializeCallback();
     },
