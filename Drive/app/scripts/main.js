@@ -324,7 +324,6 @@ geotab.addin.drivetestaddin = function () {
      */
     blur: function () {
       // hide main content
-      elAddin.className = 'hidden';
     }
   };
 };
