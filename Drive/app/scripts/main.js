@@ -306,12 +306,12 @@ geotab.addin.drivetestaddin = function () {
 
           // show main content
           elAddin.className = '';
-          offlineCheck(freshState);
-          // populateRulesetInfo();
         }, err => {
           console.error(err);
         });
       });
+      offlineCheck(freshState);
+      // populateRulesetInfo();
     },
 
     /**
