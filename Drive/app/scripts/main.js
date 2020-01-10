@@ -279,7 +279,7 @@ geotab.addin.drivetestaddin = function () {
     
   },
   populateRulesetInfo = async function(){
-    await getActiveUser();
+    // await getActiveUser();
     // let getAddInDataResult = await autoBorderSwitcher.databaseModule.getAddInData(api, autoBorderSwitcher.databaseModule.autoBorderSwitcherMasterTableId);
     // console.log(getAddInDataResult);
     // if(getAddInDataResult){
