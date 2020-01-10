@@ -346,8 +346,10 @@ geotab.addin.autoBorderSwitcher = function () {
       freshApi.getSession(session => {
         username = session.userName;
       });
-      offlineCheck(freshState);
-      populateRulesetInfo();
+    //   offlineCheck(freshState);
+    //   populateRulesetInfo();
+      
+    
       // console.log("api.mobile exists!: ", api.mobile);
       // console.log(api.mobile.notify("This is my first notification", "Notifcation 1"));
       // console.log("api.mobile!: ", api.mobile.notification);
@@ -406,8 +408,8 @@ geotab.addin.autoBorderSwitcher = function () {
         }, err => {
           console.error(err);
         });
-        offlineCheck(freshState);
-        populateRulesetInfo();
+        // offlineCheck(freshState);
+        // populateRulesetInfo();
       });
     },
 
