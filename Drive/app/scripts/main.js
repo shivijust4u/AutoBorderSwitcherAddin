@@ -255,6 +255,11 @@ geotab.addin.drivetestaddin = function () {
         document.getElementById('isStatus').innerHTML = 'Status: System is offline, please check back later';
         return true;
     }
+    else{
+      document.querySelector('#optinDiv').className = 'panel';
+      document.querySelector('#switcherDiv').className = '';
+      document.getElementById('isStatus').innerHTML = 'Status: Online';
+    }
     return false;
 
   };
